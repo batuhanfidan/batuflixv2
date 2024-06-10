@@ -1,0 +1,78 @@
+.camelCase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.main-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    gap: 3rem;
+    background: transparent;
+    border-radius: 20px;
+    backdrop-filter: blur(30px);
+    border: 1px solid white;
+}
+
+.form-control {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 30px;
+    color: white;
+    text-align: center;
+}
+
+.nasiYani {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem
+}
+
+.form-control::placeholder {
+    color: white;
+    text-align: center;
+}
+
+
+.btn {
+    width: 90%;
+    border-radius: 30px;
+}
+
+.alt-takim {
+    width: 100%;
+    display: flex;
+    gap: 0;
+    justify-content: space-between;
+}
+
+.remember {
+    margin-left: 5px;
+}
+
+a.forgotten {
+    margin-right: 10px;
+    color: white;
+}
+
+.tepe {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icons {
+    width: 50%;
+    height: 50%;
+}
+
+
+
