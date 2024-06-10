@@ -83,7 +83,13 @@ a.forgotten {
 
 
 
-
-
-
-
+body {
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    background-image: url("assets/image/wp.jpg");
+    background-size: 100% 100%; 
+    position: relative;
+  }
+  

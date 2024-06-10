@@ -3,8 +3,14 @@ import "./login.css";
 import { CiLogin } from "react-icons/ci";
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
+  let history = useHistory();
+
+  const sendClick = () => {
+    history.push("/users");
+  };
   return (
     <>
       <div className="camelCase">
@@ -34,7 +40,7 @@ export default function Login() {
               <FaLock className="icon" />
             </FormGroup>
 
-            <Button>Submit</Button>
+            <Button onClick={sendClick}>Submit </Button>
             <FormGroup check className="alt-takim">
               <FormGroup className="remember">
                 <Input type="checkbox" /> <Label check> Remember me</Label>
