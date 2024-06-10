@@ -1,5 +1,7 @@
 #root {
     text-align: center;
+    z-index: 1;
+   
 }
   
 body {
@@ -7,6 +9,4 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
-    color: white;
-    
 } 
