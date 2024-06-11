@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
@@ -34,7 +36,7 @@ export default function Login() {
 
     if (!formData.password.trim()) {
       validationErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
+    } else if (formData.password.length < 5) {
       validationErrors.password = "Password is invalid";
     }
 
