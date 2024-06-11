@@ -4,10 +4,11 @@ import Users from "./comp/users";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from "react";
 import Troll from "./comp/troll";
+import { profilesData } from "./Profiles.js";
 
 function App() {
   const [activeProfile, setActiveProfile] = useState(null);
-  const [profiles, setProfiles] = useState(["Batu", "Furkan"]);
+  const [profiles, setProfiles] = useState(profilesData);
 
   return (
     <Router>

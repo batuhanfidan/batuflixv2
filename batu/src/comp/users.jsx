@@ -1,18 +1,16 @@
 import { useHistory } from "react-router-dom";
 import "./users.css";
+import { profilesData } from "../Profiles.js";
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 const MAX_PROFILES = 5;
 
-function Profile({ name, onClick, onDelete, isAddProfile }) {
+function Profile({ name, avatar, onClick, onDelete, isAddProfile }) {
   return (
     <div className={`profile ${isAddProfile ? "add-profile" : ""}`}>
       <div onClick={onClick} className="profile-content">
         <img
-          src={
-            isAddProfile
-              ? "/src/assets/images/add.png"
-              : `/src/assets/images/profile${name}.png`
-          }
+          src={isAddProfile ? "/src/assets/images/add.png" : avatar}
           alt={name}
           className="profile-image"
         />
@@ -39,17 +37,22 @@ export default function Users({ profiles, setProfiles, setActiveProfile }) {
     }
     const profileName = prompt("Yeni profil ismi girin:");
     if (profileName && profileName.trim()) {
-      setProfiles([...profiles, profileName]);
+      setProfiles([
+        ...profiles,
+        { name: profileName, avatar: "/src/assets/images/default-avatar.png" },
+      ]);
     }
   };
 
   const deleteProfile = (profileToDelete) => {
-    setProfiles(profiles.filter((profile) => profile !== profileToDelete));
+    setProfiles(
+      profiles.filter((profile) => profile.name !== profileToDelete.name)
+    );
   };
 
   const selectProfile = (profile) => {
     setActiveProfile(profile);
-    if (profile === "Batu") {
+    if (profile.name === "Batu") {
       history.push("/troll");
     } else {
       history.push("/home");
@@ -64,7 +67,8 @@ export default function Users({ profiles, setProfiles, setActiveProfile }) {
           {profiles.map((profile, index) => (
             <Profile
               key={index}
-              name={profile}
+              name={profile.name}
+              avatar={profile.avatar}
               onClick={() => selectProfile(profile)}
               onDelete={() => deleteProfile(profile)}
             />
