@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
@@ -109,8 +107,12 @@ export default function Login() {
                   />
                   <FaLock className="icon" />
                 </FormGroup>
-
-                <Button type="submit">Login</Button>
+                <FormGroup className="alt">
+                  <Button type="submit">Login</Button>
+                  <a href="#" className="sign">
+                    You want to join the Batuflix? Sign in!
+                  </a>
+                </FormGroup>
                 <FormGroup check className="alt-takim">
                   <FormGroup className="remember">
                     <Input type="checkbox" /> <Label check> Remember me</Label>
