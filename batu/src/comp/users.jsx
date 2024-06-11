@@ -1,8 +1,10 @@
 export default function Users() {
   return (
-    <div>
-      <h1>asfasdfsadfasdf</h1>
-      <img src="cat.jpg" alt="" />
-    </div>
+    <>
+      <div className="users">
+        <h1>PUHAHAHAHA</h1>
+        <img src="/src/assets/image/cat.jpg" alt="" />
+      </div>
+    </>
   );
 }
