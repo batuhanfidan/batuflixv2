@@ -65,3 +65,20 @@
   .delete-button {
     padding: 0 5px;
   }
+
+  .add-profile-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .add-profile-icon {
+    font-size: 5rem;
+    
+  }
+  
+  .add-profile-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }

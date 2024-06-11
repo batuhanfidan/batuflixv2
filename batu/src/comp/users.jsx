@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import "./users.css";
 import { profilesData } from "../Profiles.js";
-import { IoMdAddCircleOutline } from "react-icons/io";
+import { FaUserPlus } from "react-icons/fa";
 
 const MAX_PROFILES = 5;
 
@@ -23,6 +23,19 @@ function Profile({ name, avatar, onClick, onDelete, isAddProfile }) {
           Delete
         </button>
       )}
+    </div>
+  );
+}
+
+function AddProfileButton({ onClick }) {
+  return (
+    <div>
+      <button className="add-profile-button" onClick={onClick}>
+        <div className="add-profile-container">
+          <FaUserPlus className="add-profile-icon" />
+        </div>
+      </button>
+      <span>Add Profile</span>
     </div>
   );
 }
@@ -73,7 +86,7 @@ export default function Users({ profiles, setProfiles, setActiveProfile }) {
               onDelete={() => deleteProfile(profile)}
             />
           ))}
-          <Profile name="Add profile" onClick={addProfile} isAddProfile />
+          <AddProfileButton onClick={addProfile} />
         </div>
         <div className="profile-management">
           <button
