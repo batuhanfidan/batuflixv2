@@ -1,0 +1,63 @@
+.users-container {
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 1000px;
+    height: 700px;
+    justify-content: center;
+  }
+  .main{
+    background-color: rgb(216, 26, 143);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  h1 {
+    margin-top: 20px;
+  }
+  
+  .profiles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 50px;
+  }
+  
+  .profile {
+    margin: 0 10px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .profile-button {
+    font-size: 30px;
+  }
+  
+  .profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+  }
+  
+  .profile-name {
+    margin-top: 10px;
+  }
+  
+  .add-profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    opacity: 0.5;
+  }
+  
+  .add-profile:hover img {
+    opacity: 1;
+  }
+  
+  .profile-management {
+    margin-top: 20px;
+  }

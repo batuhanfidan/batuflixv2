@@ -1,18 +1,34 @@
 import "./App.css";
 import Login from "./comp/login";
 import Users from "./comp/users";
-import { Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useState } from "react";
+import Troll from "./comp/troll";
 
 function App() {
+  const [activeProfile, setActiveProfile] = useState(null);
+  const [profiles, setProfiles] = useState(["Batu", "Furkan"]);
+
   return (
-    <>
-      <Route exact path="/">
-        <Login />
-      </Route>{" "}
-      <Route path="/users">
-        <Users />
-      </Route>
-    </>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Login />
+        </Route>
+        <Route path="/users">
+          <Users
+            profiles={profiles}
+            setProfiles={setProfiles}
+            activeProfile={activeProfile}
+            setActiveProfile={setActiveProfile}
+          />
+        </Route>
+        <Route path="/home"></Route>
+        <Route path="/troll">
+          <Troll />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
