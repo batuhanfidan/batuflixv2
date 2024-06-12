@@ -29,13 +29,13 @@ function Profile({ name, avatar, onClick, onDelete, isAddProfile }) {
 
 function AddProfileButton({ onClick }) {
   return (
-    <div>
+    <div className="addProfile">
       <button className="add-profile-button" onClick={onClick}>
         <div className="add-profile-container">
           <FaUserPlus className="add-profile-icon" />
         </div>
       </button>
-      <span>Add Profile</span>
+      <span className="span">Add Profile</span>
     </div>
   );
 }

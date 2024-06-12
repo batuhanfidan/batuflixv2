@@ -1,6 +1,7 @@
 import "./App.css";
 import Login from "./comp/login";
 import Users from "./comp/users";
+import Home from "./comp/home.jsx";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from "react";
 import Troll from "./comp/troll";
@@ -24,7 +25,9 @@ function App() {
             setActiveProfile={setActiveProfile}
           />
         </Route>
-        <Route path="/home"></Route>
+        <Route path="/home">
+          <Home />
+        </Route>
         <Route path="/troll">
           <Troll />
         </Route>

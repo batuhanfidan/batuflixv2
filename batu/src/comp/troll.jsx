@@ -1,6 +1,6 @@
 import React from "react";
-import catImage from "../assets/image/cat.jpg"; // Resim dosyasını import ediyoruz
-import "./troll.css"; // CSS dosyasını import ediyoruz
+import catImage from "../assets/image/cat.jpg";
+import "./troll.css";
 
 export default function Troll() {
   return (
