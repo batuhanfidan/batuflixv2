@@ -1,11 +1,10 @@
 import "./App.css";
 import Login from "./comp/login";
 import Users from "./comp/users";
-import Home from "./comp/home.jsx";
-import Header from "./comp/home.jsx";
+import Home from "./comp/home";
+import Troll from "./comp/troll";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from "react";
-import Troll from "./comp/troll";
 import { profilesData } from "./Profiles.js";
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
           />
         </Route>
         <Route path="/home">
-          <Header />
           <Home />
         </Route>
         <Route path="/troll">
