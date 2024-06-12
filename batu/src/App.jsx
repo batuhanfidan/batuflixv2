@@ -2,6 +2,7 @@ import "./App.css";
 import Login from "./comp/login";
 import Users from "./comp/users";
 import Home from "./comp/home.jsx";
+import Header from "./comp/home.jsx";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from "react";
 import Troll from "./comp/troll";
@@ -26,6 +27,7 @@ function App() {
           />
         </Route>
         <Route path="/home">
+          <Header />
           <Home />
         </Route>
         <Route path="/troll">
