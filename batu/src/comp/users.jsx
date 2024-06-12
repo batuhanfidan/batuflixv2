@@ -41,6 +41,21 @@ function AddProfileButton({ onClick }) {
 }
 
 export default function Users({ profiles, setProfiles, setActiveProfile }) {
+  let newProfiles = [];
+  let order = ["Funke", "Fields", "Batu", "Lawson"];
+  profiles.map((eleman, index) => {
+    if (!order.includes(eleman.name)) {
+      order.push(eleman.name);
+    }
+  });
+
+  for (let i = 0; i < order.length; i++) {
+    const foundP = profiles.find((p) => p.name === order[i]);
+    if (foundP) {
+      newProfiles.push(foundP);
+    }
+  }
+
   const history = useHistory();
 
   const addProfile = () => {
@@ -77,7 +92,7 @@ export default function Users({ profiles, setProfiles, setActiveProfile }) {
       <div className="users-container">
         <h1>Who's watching?</h1>
         <div className="profiles">
-          {profiles.map((profile, index) => (
+          {newProfiles.map((profile, index) => (
             <Profile
               key={index}
               name={profile.name}

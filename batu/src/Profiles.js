@@ -6,8 +6,9 @@ export const profilesData = [
   },
   {
     id: 8,
-    name: "Ferguson",
-    avatar: "https://reqres.in/img/faces/8-image.jpg",
+    name: "Batu",
+    avatar:
+      "https://oyster.ignimgs.com/mediawiki/apis.ign.com/avatar-the-last-airbender/b/b0/Aang_img.jpg",
   },
   {
     id: 9,
