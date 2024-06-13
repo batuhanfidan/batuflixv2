@@ -4,12 +4,23 @@ import Users from "./comp/users";
 import Home from "./comp/home";
 import Troll from "./comp/troll";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { profilesData } from "./Profiles.js";
 
 function App() {
-  const [activeProfile, setActiveProfile] = useState(null);
+  const [activeProfile, setActiveProfile] = useState(() => {
+    const savedProfile = localStorage.getItem("activeProfile");
+    return savedProfile ? JSON.parse(savedProfile) : null;
+  });
   const [profiles, setProfiles] = useState(profilesData);
+
+  useEffect(() => {
+    if (activeProfile) {
+      localStorage.setItem("activeProfile", JSON.stringify(activeProfile));
+    } else {
+      localStorage.removeItem("activeProfile");
+    }
+  }, [activeProfile]);
 
   return (
     <Router>
@@ -26,7 +37,12 @@ function App() {
           />
         </Route>
         <Route path="/home">
-          <Home />
+          <Home
+            activeProfile={activeProfile}
+            profiles={profiles}
+            setProfiles={setProfiles}
+            setActiveProfile={setActiveProfile}
+          />
         </Route>
         <Route path="/troll">
           <Troll />

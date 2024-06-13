@@ -1,8 +1,14 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./home.css";
 
-const Header = () => {
+const Header = ({ activeProfile }) => {
+  const history = useHistory();
+
+  const handleProfileClick = () => {
+    history.push("/users");
+  };
+
   return (
     <div className="header">
       <div className="header__logo">
@@ -21,6 +27,16 @@ const Header = () => {
           TV Shows
         </Link>
       </div>
+      {activeProfile && (
+        <div className="header__profile" onClick={handleProfileClick}>
+          <img
+            src={activeProfile.avatar}
+            alt={activeProfile.name}
+            className="header__profileImage"
+          />
+          <span className="header__profileName">{activeProfile.name}</span>
+        </div>
+      )}
     </div>
   );
 };
@@ -50,6 +66,7 @@ const MainContent = () => {
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(false);
   const [videoEnded, setVideoEnded] = useState(false);
+  const [videoLoadError, setVideoLoadError] = useState(false);
 
   const handleMuteToggle = () => {
     setIsMuted(!isMuted);
@@ -65,19 +82,26 @@ const MainContent = () => {
       <div className={`main-content__video ${videoEnded ? "hidden" : ""}`}>
         <video
           ref={videoRef}
-          src="/path/to/your/video.mp4"
           autoPlay
           loop={false}
           muted={isMuted}
           onEnded={handleVideoEnd}
-        ></video>
+        >
+          <source src="src/assets/videos/aangValcano.mp4" type="video/mp4" />
+          Tarayıcınız bu videoyu desteklemiyor.
+        </video>
         <button onClick={handleMuteToggle} className="mute-button">
           {isMuted ? "Unmute" : "Mute"}
         </button>
       </div>
       {videoEnded && (
         <div className="main-content__image">
-          <img src="/path/to/your/image.jpg" alt="Background" />
+          <img src="" alt="Background" />
+        </div>
+      )}
+      {videoLoadError && (
+        <div className="main-content__error">
+          Video failed to load. Please try again later.
         </div>
       )}
       <div className="main-content__recommendations">
@@ -86,17 +110,17 @@ const MainContent = () => {
           <MovieRecommendation
             title="Movie 1"
             description="Description for Movie 1"
-            image="/path/to/movie1.jpg"
+            image=""
           />
           <MovieRecommendation
             title="Movie 2"
             description="Description for Movie 2"
-            image="/path/to/movie2.jpg"
+            image=""
           />
           <MovieRecommendation
             title="Movie 3"
             description="Description for Movie 3"
-            image="/path/to/movie3.jpg"
+            image=""
           />
         </div>
       </div>
@@ -104,10 +128,10 @@ const MainContent = () => {
   );
 };
 
-const Home = () => {
+const Home = ({ activeProfile }) => {
   return (
     <div className="home">
-      <Header />
+      <Header activeProfile={activeProfile} />
       <MainContent />
       <Footer />
     </div>
