@@ -1,8 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./home.css";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GoSearch } from "react-icons/go";
+import axios from "axios";
 
 const Header = ({ activeProfile }) => {
   const history = useHistory();
@@ -47,15 +48,6 @@ const Header = ({ activeProfile }) => {
   );
 };
 
-const Footer = () => {
-  return (
-    <div className="footer">
-      <p>© 2024 Batuflix. All Rights Reserved.</p>
-      <p>Privacy · Terms · Sitemap · About Me</p>
-    </div>
-  );
-};
-
 const MovieRecommendation = ({ title, description, image }) => {
   return (
     <div className="movie-recommendation">
@@ -63,6 +55,47 @@ const MovieRecommendation = ({ title, description, image }) => {
       <div className="movie-recommendation__details">
         <h3>{title}</h3>
         <p>{description}</p>
+      </div>
+    </div>
+  );
+};
+
+const MovieRow = ({ title }) => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://movies-api14.p.rapidapi.com/movies", {
+        headers: {
+          "x-rapidapi-key":
+            "2ce04038e2msh104054e193ec289p18cdf9jsnb6a4a44d19e9",
+          "x-rapidapi-host": "movies-api14.p.rapidapi.com",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        const random = Math.floor(
+          Math.random() * (response.data.movies.length - 0)
+        );
+        setMovies(response.data.movies.slice(random, random + 5));
+      })
+      .catch((error) => {
+        console.warn(error);
+      });
+  }, []);
+
+  return (
+    <div className="movie-row">
+      <h3>{title}</h3>
+      <div className="movie-row__list">
+        {movies.map((movie, index) => (
+          <MovieRecommendation
+            key={index}
+            title={movie.title}
+            description={movie.description}
+            image={movie.backdrop_path}
+          />
+        ))}
       </div>
     </div>
   );
@@ -91,6 +124,16 @@ const MainContent = () => {
 
   return (
     <div className="main-content">
+      <div>
+        <img src="src\assets\image\avatarlogo.png" className="logo" />
+        <p>
+          Katara ve Sokka kardeşler, uzun kış uykusundan uyandırdıkları genç
+          Aang'ın kötü kalpli Ateş Ulusu'nu yenebilecek hava bükücüsü güçlerine
+          sahip Avatar olduğunu öğrenir.
+        </p>
+        <button>sa</button>
+        <button>as</button>
+      </div>
       <div className={`main-content__video ${videoEnded ? "hidden" : ""}`}>
         <video
           ref={videoRef}
@@ -109,7 +152,7 @@ const MainContent = () => {
       </div>
       {videoEnded && (
         <div className="main-content__image">
-          <img src="/src/assets/image/anafoto.jpeg" />
+          <img src="/src/assets/image/anafoto.jpeg" alt="Background" />
         </div>
       )}
       {videoLoadError && (
@@ -120,23 +163,20 @@ const MainContent = () => {
       <div className="main-content__recommendations">
         <h2>Recommended for You</h2>
         <div className="recommendations__list">
-          <MovieRecommendation
-            title="Movie 1"
-            description="Description for Movie 1"
-            image=""
-          />
-          <MovieRecommendation
-            title="Movie 2"
-            description="Description for Movie 2"
-            image=""
-          />
-          <MovieRecommendation
-            title="Movie 3"
-            description="Description for Movie 3"
-            image=""
-          />
+          <MovieRow title="Movies You Might Like" />
+          <MovieRow title="Top 5 Movies" />
+          <MovieRow title="Series" />
         </div>
       </div>
+    </div>
+  );
+};
+
+const Footer = () => {
+  return (
+    <div className="footer">
+      <p>© 2024 Batuflix. All Rights Reserved.</p>
+      <p>Privacy · Terms · Sitemap · About Me</p>
     </div>
   );
 };
