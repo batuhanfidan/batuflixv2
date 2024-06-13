@@ -6,6 +6,7 @@ import { GoSearch } from "react-icons/go";
 import axios from "axios";
 import { FaPlay } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
+import { IoVolumeMuteSharp } from "react-icons/io5";
 
 const Header = ({ activeProfile }) => {
   const history = useHistory();
@@ -33,8 +34,8 @@ const Header = ({ activeProfile }) => {
         </Link>
       </div>
       <div className="panels">
-        <GoSearch />
-        <IoMdNotificationsOutline />
+        <GoSearch style={{ width: "35px", height: "35px" }} />
+        <IoMdNotificationsOutline style={{ width: "40px", height: "40px" }} />
         {activeProfile && (
           <div className="header__profile" onClick={handleProfileClick}>
             <img
@@ -50,13 +51,14 @@ const Header = ({ activeProfile }) => {
   );
 };
 
-const MovieRecommendation = ({ title, description, image }) => {
+const MovieRecommendation = ({ title, description, image, overview }) => {
   return (
     <div className="movie-recommendation">
       <img src={image} alt={title} className="movie-recommendation__image" />
       <div className="movie-recommendation__details">
         <h4>{title}</h4>
         <p>{description}</p>
+        <p> {overview} </p>
       </div>
     </div>
   );
@@ -71,8 +73,10 @@ const MovieRow = ({ title, movies }) => {
           <MovieRecommendation
             key={index}
             title={movie.title}
-            description={movie.description}
+            description={movie.genres}
             image={movie.backdrop_path}
+            overview={movie.overview}
+            date={movie.relase_date}
           />
         ))}
       </div>
@@ -107,52 +111,56 @@ const MainContent = () => {
       .get("https://movies-api14.p.rapidapi.com/movies", {
         headers: {
           "x-rapidapi-key":
-            "2ce04038e2msh104054e193ec289p18cdf9jsnb6a4a44d19e9",
+            "1fd7bcd429mshb25f368e4d39d11p19262djsn2f5c24e3c359",
           "x-rapidapi-host": "movies-api14.p.rapidapi.com",
         },
       })
       .then((response) => {
         console.log(response.data);
-        setMovies(response.data.movies.slice(0, 15));
+        const random = Math.floor(
+          Math.random() * (response.data.movies.length - 6)
+        );
+        setMovies(response.data.movies.slice(random, random + 30));
       })
       .catch((error) => {
         console.warn(error);
       });
   }, []);
-
   return (
     <div className="main-content">
-      <div className="avatar" style={{ width: "35%" }}>
-        <img src="src/assets/image/avatarlogo.png" className="logo" />
-        <p>
-          Katara ve Sokka kardeşler, uzun kış uykusundan uyandırdıkları genç
-          Aang'ın kötü kalpli Ateş Ulusu'nu yenebilecek hava bükücüsü güçlerine
-          sahip Avatar olduğunu öğrenir.
-        </p>
-        <button>
-          <FaPlay />
-          Play
-        </button>
-        <button>
-          <FaInfoCircle />
-          More info
-        </button>
-      </div>
-      <div className={`main-content__video ${videoEnded ? "hidden" : ""}`}>
-        <video
-          ref={videoRef}
-          autoPlay
-          loop={false}
-          muted={isMuted}
-          onEnded={handleVideoEnd}
-          onError={handleVideoError}
-        >
-          <source src="/src/assets/videos/aangValcano.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <button onClick={handleMuteToggle} className="mute-button">
-          {isMuted ? "Unmute" : "Mute"}
-        </button>
+      <div className="nee">
+        <div className="avatar" style={{ width: "35%" }}>
+          <img src="src/assets/image/avatarlogo.png" className="logo" />
+          <p>
+            Katara ve Sokka kardeşler, uzun kış uykusundan uyandırdıkları genç
+            Aang'ın kötü kalpli Ateş Ulusu'nu yenebilecek hava bükücüsü
+            güçlerine sahip Avatar olduğunu öğrenir.
+          </p>
+          <button>
+            <FaPlay />
+            Play
+          </button>
+          <button>
+            <FaInfoCircle />
+            More info
+          </button>
+        </div>
+        <div className={`main-content__video ${videoEnded ? "hidden" : ""}`}>
+          <video
+            ref={videoRef}
+            autoPlay
+            loop={false}
+            muted={isMuted}
+            onEnded={handleVideoEnd}
+            onError={handleVideoError}
+          >
+            <source src="/src/assets/videos/aangValcano.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <button onClick={handleMuteToggle} className="mute-button">
+            {isMuted ? "Unmute" : "Mute"}
+          </button>
+        </div>
       </div>
       {videoEnded && (
         <div className="main-content__image">
@@ -168,7 +176,7 @@ const MainContent = () => {
         <div className="recommendations__list">
           <MovieRow title="Movies You Might Like" movies={movies.slice(0, 5)} />
           <MovieRow title="Top 5 Movies" movies={movies.slice(5, 10)} />
-          <MovieRow title="Series" movies={movies.slice(10, 15)} />
+          <MovieRow title="Editor's choice" movies={movies.slice(10, 15)} />
         </div>
       </div>
     </div>
@@ -179,7 +187,10 @@ const Footer = () => {
   return (
     <div className="footer">
       <p>© 2024 Batuflix. All Rights Reserved.</p>
-      <p>Privacy · Terms · Sitemap · About Me</p>
+      <p>
+        <Link to="/privacy">Privacy</Link> ·<Link to="/terms"> Terms</Link> ·
+        <Link to="/sitemap"> Sitemap</Link> ·<Link> About Me </Link>
+      </p>
     </div>
   );
 };
