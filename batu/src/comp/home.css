@@ -70,16 +70,15 @@
 .movie-recommendation {
   display: flex;
   flex-direction: column;
-  margin: 10px;
   background-color: #111;
   color: #fff;
-  padding: 10px;
-  width: calc(20% - 20px); /* 5 films in a row */
+  width: calc(20% - 20px); 
 }
 
 .movie-recommendation__image {
   width: 100%;
   height: auto;
+  border-radius: 5px;
 }
 
 .movie-recommendation__details {
@@ -106,6 +105,7 @@
   width: 100%;
   height: 90vh;
   overflow: hidden;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.815), rgba(0, 0, 0, 0));
 }
 
 .main-content__video video {
@@ -116,6 +116,12 @@
 
 .main-content__video.hidden {
   display: none;
+}
+
+.main-content__image {
+  position: relative;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.815), rgba(0, 0, 0, 0));
+  z-index: 1;
 }
 
 .main-content__image img {
@@ -149,6 +155,9 @@
 .movie-row {
   width: 100%;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .movie-row h3 {
@@ -159,23 +168,50 @@
 .movie-row__list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 1rem;
 }
 
-
-.play, .more-info {
+.avatar {
   position: absolute;
-  bottom: 50%; /* Positions buttons at the vertical center */
-  right: 50%; /* Positions buttons at the horizontal center */
-  transform: translate(50%, 50%); /* Corrects position to center */
-  background-color: rgba(0, 0, 0, 0.5);
+  margin-top: 48vh;
+  margin-left: 5vh;
+  transform: translateY(-50%);
+  background-color: transparent;
+  color: #fff;
+  padding: 20px;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.avatar img {
+  width: 100%;
+}
+
+.avatar p {
+  font-size: 1rem;
+}
+
+.avatar button {
+  background-color: #e50914;
   color: #fff;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   font-size: 1rem;
+  margin-right: 10px;
 }
 
-.logo{
-  background: transparent;
+.avatar button:hover {
+  background-color: white;
+  color: red;
+}
+
+.avatar button:last-child {
+  background-color: grey;
+  color: white;
+}
+
+.avatar button:last-child:hover {
+  background-color: rgba(128, 128, 128, 0.74);
 }
