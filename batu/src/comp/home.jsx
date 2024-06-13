@@ -4,6 +4,8 @@ import "./home.css";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GoSearch } from "react-icons/go";
 import axios from "axios";
+import { FaPlay } from "react-icons/fa";
+import { FaInfoCircle } from "react-icons/fa";
 
 const Header = ({ activeProfile }) => {
   const history = useHistory();
@@ -27,7 +29,7 @@ const Header = ({ activeProfile }) => {
           Movies
         </Link>
         <Link to="/tvShows" className="header__navLink">
-          TV Shows
+          Series
         </Link>
       </div>
       <div className="panels">
@@ -53,37 +55,14 @@ const MovieRecommendation = ({ title, description, image }) => {
     <div className="movie-recommendation">
       <img src={image} alt={title} className="movie-recommendation__image" />
       <div className="movie-recommendation__details">
-        <h3>{title}</h3>
+        <h4>{title}</h4>
         <p>{description}</p>
       </div>
     </div>
   );
 };
 
-const MovieRow = ({ title }) => {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("https://movies-api14.p.rapidapi.com/movies", {
-        headers: {
-          "x-rapidapi-key":
-            "2ce04038e2msh104054e193ec289p18cdf9jsnb6a4a44d19e9",
-          "x-rapidapi-host": "movies-api14.p.rapidapi.com",
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        const random = Math.floor(
-          Math.random() * (response.data.movies.length - 0)
-        );
-        setMovies(response.data.movies.slice(random, random + 5));
-      })
-      .catch((error) => {
-        console.warn(error);
-      });
-  }, []);
-
+const MovieRow = ({ title, movies }) => {
   return (
     <div className="movie-row">
       <h3>{title}</h3>
@@ -106,6 +85,7 @@ const MainContent = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [videoEnded, setVideoEnded] = useState(false);
   const [videoLoadError, setVideoLoadError] = useState(false);
+  const [movies, setMovies] = useState([]);
 
   const handleMuteToggle = () => {
     setIsMuted(!isMuted);
@@ -122,17 +102,41 @@ const MainContent = () => {
     setVideoLoadError(true);
   };
 
+  useEffect(() => {
+    axios
+      .get("https://movies-api14.p.rapidapi.com/movies", {
+        headers: {
+          "x-rapidapi-key":
+            "2ce04038e2msh104054e193ec289p18cdf9jsnb6a4a44d19e9",
+          "x-rapidapi-host": "movies-api14.p.rapidapi.com",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setMovies(response.data.movies.slice(0, 15));
+      })
+      .catch((error) => {
+        console.warn(error);
+      });
+  }, []);
+
   return (
     <div className="main-content">
-      <div>
-        <img src="src\assets\image\avatarlogo.png" className="logo" />
+      <div className="avatar" style={{ width: "35%" }}>
+        <img src="src/assets/image/avatarlogo.png" className="logo" />
         <p>
           Katara ve Sokka kardeşler, uzun kış uykusundan uyandırdıkları genç
           Aang'ın kötü kalpli Ateş Ulusu'nu yenebilecek hava bükücüsü güçlerine
           sahip Avatar olduğunu öğrenir.
         </p>
-        <button>sa</button>
-        <button>as</button>
+        <button>
+          <FaPlay />
+          Play
+        </button>
+        <button>
+          <FaInfoCircle />
+          More info
+        </button>
       </div>
       <div className={`main-content__video ${videoEnded ? "hidden" : ""}`}>
         <video
@@ -161,11 +165,10 @@ const MainContent = () => {
         </div>
       )}
       <div className="main-content__recommendations">
-        <h2>Recommended for You</h2>
         <div className="recommendations__list">
-          <MovieRow title="Movies You Might Like" />
-          <MovieRow title="Top 5 Movies" />
-          <MovieRow title="Series" />
+          <MovieRow title="Movies You Might Like" movies={movies.slice(0, 5)} />
+          <MovieRow title="Top 5 Movies" movies={movies.slice(5, 10)} />
+          <MovieRow title="Series" movies={movies.slice(10, 15)} />
         </div>
       </div>
     </div>
