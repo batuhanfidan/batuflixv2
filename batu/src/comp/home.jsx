@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./home.css";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { GoSearch } from "react-icons/go";
 
 const Header = ({ activeProfile }) => {
   const history = useHistory();
@@ -27,16 +29,20 @@ const Header = ({ activeProfile }) => {
           TV Shows
         </Link>
       </div>
-      {activeProfile && (
-        <div className="header__profile" onClick={handleProfileClick}>
-          <img
-            src={activeProfile.avatar}
-            alt={activeProfile.name}
-            className="header__profileImage"
-          />
-          <span className="header__profileName">{activeProfile.name}</span>
-        </div>
-      )}
+      <div className="panels">
+        <GoSearch />
+        <IoMdNotificationsOutline />
+        {activeProfile && (
+          <div className="header__profile" onClick={handleProfileClick}>
+            <img
+              src={activeProfile.avatar}
+              alt={activeProfile.name}
+              className="header__profileImage"
+            />
+            <span className="header__profileName">{activeProfile.name}</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -70,11 +76,17 @@ const MainContent = () => {
 
   const handleMuteToggle = () => {
     setIsMuted(!isMuted);
-    videoRef.current.muted = !isMuted;
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+    }
   };
 
   const handleVideoEnd = () => {
     setVideoEnded(true);
+  };
+
+  const handleVideoError = () => {
+    setVideoLoadError(true);
   };
 
   return (
@@ -86,9 +98,10 @@ const MainContent = () => {
           loop={false}
           muted={isMuted}
           onEnded={handleVideoEnd}
+          onError={handleVideoError}
         >
-          <source src="src/assets/videos/aangValcano.mp4" type="video/mp4" />
-          Tarayıcınız bu videoyu desteklemiyor.
+          <source src="/src/assets/videos/aangValcano.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
         <button onClick={handleMuteToggle} className="mute-button">
           {isMuted ? "Unmute" : "Mute"}
@@ -96,7 +109,7 @@ const MainContent = () => {
       </div>
       {videoEnded && (
         <div className="main-content__image">
-          <img src="" alt="Background" />
+          <img src="/src/assets/image/anafoto.jpeg" />
         </div>
       )}
       {videoLoadError && (

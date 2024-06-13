@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+ 
 }
 
 .header {
@@ -15,7 +14,10 @@
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.815), rgba(0, 0, 0, 0)); 
 }
+
+
 
 .header__logo img {
   width: 100px;
@@ -51,6 +53,11 @@
 .header__profileName {
   color: #fff;
   font-size: 1rem;
+}
+
+.panels {
+  display: flex;
+  flex-direction: initial;
 }
 
 .footer {
@@ -93,7 +100,7 @@
 }
 
 .main-content {
-  padding-top: 80px; 
+  
   flex: 1;
   position: relative;
 }
@@ -101,7 +108,7 @@
 .main-content__video {
   position: relative;
   width: 100%;
-  height: 80vh; 
+  height: 90vh; 
   overflow: hidden;
 }
 
@@ -117,20 +124,25 @@
 
 .main-content__image img {
   width: 100%;
-  height: 50vh; 
+  height: 90vh;
   object-fit: cover; 
 }
 
 .mute-button {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 20px; 
+  right: 20px; 
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   font-size: 1rem;
+}
+
+.main-content__video .mute-button {
+  bottom: 20px; 
+  right: 20px; 
 }
 
 .main-content__recommendations {
