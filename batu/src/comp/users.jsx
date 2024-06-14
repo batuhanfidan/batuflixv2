@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 import "./users.css";
-import { profilesData } from "../Profiles.js";
+
 import { FaUserPlus } from "react-icons/fa";
 
 const MAX_PROFILES = 5;
