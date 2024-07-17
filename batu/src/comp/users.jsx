@@ -80,7 +80,7 @@ export default function Users({ profiles, setProfiles, setActiveProfile }) {
 
   const selectProfile = (profile) => {
     setActiveProfile(profile);
-    if (profile.name === "Batu") {
+    if (profile.name === "batu") {
       history.push("/troll");
     } else {
       history.push("/home");

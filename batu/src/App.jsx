@@ -6,6 +6,7 @@ import Troll from "./comp/troll";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { profilesData } from "./Profiles.js";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [activeProfile, setActiveProfile] = useState(() => {
@@ -48,6 +49,7 @@ function App() {
           <Troll />
         </Route>
       </Switch>
+      <ToastContainer />
     </Router>
   );
 }

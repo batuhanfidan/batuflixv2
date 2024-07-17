@@ -7,7 +7,6 @@ import { CiLogin } from "react-icons/ci";
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
-import backgroundImage from "../assets/image/wp.jpg";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -72,13 +71,12 @@ export default function Login() {
       <div
         className="ne"
         style={{
-          backgroundImage: `url(${backgroundImage})`,
           height: "100vh",
         }}
       >
         <div id="roots">
           <div className="camelCase">
-            <img src="/src/assets/image/bf.png" alt="" />
+            <img src="https://i.hizliresim.com/kvnl7ez.png" alt="" />
             <div style={{ width: "400px", height: "30rem" }}>
               <Form className="main-div" onSubmit={handleSubmit}>
                 <FormGroup className="tepe">
@@ -126,7 +124,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }

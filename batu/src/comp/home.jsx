@@ -130,7 +130,7 @@ const MainContent = () => {
     <div className="main-content">
       <div className="nee">
         <div className="avatar" style={{ width: "35%" }}>
-          <img src="src/assets/image/avatarlogo.png" className="logo" />
+          <img src="https://i.hizliresim.com/927py5w.png" className="logo" />
           <p>
             Katara ve Sokka kardeşler, uzun kış uykusundan uyandırdıkları genç
             Aang'ın kötü kalpli Ateş Ulusu'nu yenebilecek hava bükücüsü
@@ -154,7 +154,10 @@ const MainContent = () => {
             onEnded={handleVideoEnd}
             onError={handleVideoError}
           >
-            <source src="/src/assets/videos/aangValcano.mp4" type="video/mp4" />
+            <source
+              src="https://lh3.googleusercontent.com/pw/AP1GczNVBT9q8isPNIaImeaf7LLxLliNQSS0N3l5UiJncDVNTe8ASynPcb2u7TwOT39pKOavG43ULr1TG65oDfFnGi_Rj5OocC4cFHkfAqsYJEpuaF55tTPzmtvJ04_Z4sVc97vzjW4v1VU7VnAZP5bJCPMUqkop9fMK8umfmEWr4OIYNnUwwS8AO-Sl5UvCE5cB1MOyXm71I7MD8uhB6HDEquX7LAyGWZU28-to79apNPUalk6H9tH3Gp8KRaI24AdSRenDSws8ppuBLutENvx4WsPIwmWlsKbFNXG0cRkHscocBX9ChemClj2Y-ohAo_WzyxS4eYOYy-hcqJNlWiZDg8W-3NJpvP1z64O3Hgm91bRffibUV3iQwH60JPtFRcAqREyyRNBFhI0yDP-uju9BLwhoWlBHwZCcpaXGMJi3DorRHb4SVEqWed0_6m8Z1aHsHn1DjcaSGUlz-oQrhym5PhULDGtW2BQPehc8GV6f_kGhZEoLKBKgwx2MWXmjlm3YMuiYLhfGlqLd0y3Lmuwy8eC0h_cl89xs8BHSDCHchFGtjvgpG0IvwCmVR7PbRQjTgadLqWli_ekIVeYHNHEFATzDERTLB-5h7Zd5vkqw-8qKdXSQod7_dDHJMBETA78fMfztTBlcqS0OdQq2ppik3elBwbcQcHRVYkM-3rEv1JPMf1fopYfWR4Whn_S75U5sE7pvrjpR8yOqqEB0CJe-quBp4npc5aun1eivOsScsVtbiFftYDiRXzIHKN_FHxTFLYqmqoaTwVGiO5s-OU5gmLIf5PLO3kgHzxbyshz8NnSQDCiYO4tFkDALrsxgNNbTVnGnmZ5OvdUsKuX5arDkcqmAca0rKKJ-af-B7b1j-Q1xUG1kQQuTp2wKlPX6RwJqYs-W8PnchXz4uDcoC0blNEA=m15?authuser=0&cpn=k-d7xqW8Uwi-f-7M&c=WEB_EMBEDDED_PLAYER&cver=1.20240714.00.00"
+              type="video/mp4"
+            />
             Your browser does not support the video tag.
           </video>
           <button onClick={handleMuteToggle} className="mute-button">
@@ -164,7 +167,7 @@ const MainContent = () => {
       </div>
       {videoEnded && (
         <div className="main-content__image">
-          <img src="/src/assets/image/anafoto.jpeg" alt="Background" />
+          <img src="https://i.hizliresim.com/eukpqc7.jpeg" alt="Background" />
         </div>
       )}
       {videoLoadError && (
