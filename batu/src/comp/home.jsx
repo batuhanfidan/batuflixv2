@@ -8,6 +8,7 @@ import { FaPlay } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
 import { IoVolumeMuteSharp } from "react-icons/io5";
 import video from "/src/assets/videos/aangValcano.mp4";
+import foto from "/src/assets/image/bfheader.png";
 
 const Header = ({ activeProfile }) => {
   const history = useHistory();
@@ -20,7 +21,7 @@ const Header = ({ activeProfile }) => {
     <div className="header">
       <div className="header__logo">
         <Link to="/home">
-          <img src="/src/assets/image/bfheader.png" alt="Home" />
+          <img src={foto} alt="Home" />
         </Link>
       </div>
       <div className="header__nav">
